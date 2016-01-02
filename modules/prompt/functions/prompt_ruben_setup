@@ -1,0 +1,44 @@
+function prompt_ruben_pwd {
+  local pwd="${PWD/#$HOME/~}"
+
+  if [[ "$pwd" == (#m)[/~] ]]; then
+    _prompt_ruben_pwd="$MATCH"
+    unset MATCH
+  else
+    _prompt_ruben_pwd="${${${${(@j:/:M)${(@s:/:)pwd}##.#?}:h}%/}//\%/%%}/${${pwd:t}//\%/%%}"
+  fi
+}
+
+function prompt_ruben_precmd {
+  git-info
+  #prompt_ruben_pwd
+}
+
+function prompt_ruben_setup {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+  prompt_opts=(cr percent subst)
+
+  # Load required functions.
+  autoload -Uz add-zsh-hook
+
+  # Add hook for calling git-info before each command.
+  add-zsh-hook precmd prompt_ruben_precmd
+
+  # Set git-info parameters.
+  zstyle ':prezto:module:git:info' verbose 'yes'
+  zstyle ':prezto:module:git:info:branch' format '%F{yellow}%b%f'
+  zstyle ':prezto:module:git:info:clean' format ' %F{green}✔%f'
+  zstyle ':prezto:module:git:info:dirty' format ' %F{red}✗%f'
+  zstyle ':prezto:module:git:info:ahead' format ' %F{yellow}⬆%f'
+  zstyle ':prezto:module:git:info:behind' format ' %F{yellow}⬇%f'
+  zstyle ':prezto:module:git:info:keys' format \
+    'prompt' ' %F{blue}(%f$(coalesce "%b" "%p" "%c")${git_info[rprompt]}%s%F{green})%f' \
+    'rprompt' '%C%D'
+
+  # Define prompts.
+  PROMPT='%F{cyan}%2d${(e)git_info[prompt]}$ '
+  RPROMPT='[%*]'
+}
+
+prompt_ruben_setup "$@"
