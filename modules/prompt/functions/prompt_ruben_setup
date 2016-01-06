@@ -37,7 +37,7 @@ function prompt_ruben_setup {
     'rprompt' '%C%D'
 
   # Define prompts.
-  PROMPT='%F{cyan}%2d${(e)git_info[prompt]}$ '
+  PROMPT='%F{cyan}%2d${(e)git_info[prompt]}$%f '
   RPROMPT='[%*]'
 }
 
