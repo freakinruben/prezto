@@ -33,3 +33,6 @@ export NVM_DIR=~/.nvm
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export ANDROID_SDK_ROOT=/usr/local/var/lib/android-sdk
 export REACT_EDITOR=subl
+
+export GEM_HOME=$HOME/.gem
+export PATH=$GEM_HOME/bin:$PATH
