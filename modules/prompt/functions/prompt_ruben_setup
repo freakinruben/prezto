@@ -33,7 +33,7 @@ function prompt_ruben_setup {
   zstyle ':prezto:module:git:info:ahead' format ' %F{yellow}⬆%f'
   zstyle ':prezto:module:git:info:behind' format ' %F{yellow}⬇%f'
   zstyle ':prezto:module:git:info:keys' format \
-    'prompt' ' %F{blue}(%f$(coalesce "%b" "%p" "%c")${git_info[rprompt]}%s%F{green})%f' \
+    'prompt' ' %F{blue}(%f$(coalesce "%b" "%p" "%c")${git_info[rprompt]}%s%F{blue})%f' \
     'rprompt' '%C%D'
 
   # Define prompts.
