@@ -11,10 +11,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
-export SUBLIME=subl
-export EDITOR="$SUBLIME --wait"
-export VISUAL=$EDITOR
-export LSCOLORS="exfxcxdxbxegedabagacad"
 
 expand-or-complete-with-dots() {      # This bunch of code displays red dots when autocompleting
   echo -n "\e[31m......\e[0m"         # a command with the tab key, "Oh-my-zsh"-style.
@@ -28,18 +24,6 @@ bindkey "^I" expand-or-complete-with-dots
 
 # export NVM_DIR=~/.nvm
 # . $(brew --prefix nvm)/nvm.sh
-
-#export ANDROID_HOME=~/Library/Android/sdk
-export ANDROID_HOME=/usr/local/opt/android-sdk
-export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
-export ANDROID_SDK=$ANDROID_SDK_ROOT
-export REACT_EDITOR=subl
-
-export GEM_HOME=$HOME/.gem
-export PATH="$PATH:$GEM_HOME/bin"
-
-export YARN_HOME=$HOME/.yarn
-export PATH="$PATH:$YARN_HOME/bin"
 
 # color highlighting in man pages
 man() {

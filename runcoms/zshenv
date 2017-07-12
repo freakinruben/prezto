@@ -9,3 +9,21 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN || -z "${TMPDIR}" ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+export SUBLIME=subl
+export EDITOR="$SUBLIME --wait"
+export VISUAL=$EDITOR
+export LSCOLORS="exfxcxdxbxegedabagacad"
+
+
+#export ANDROID_HOME=~/Library/Android/sdk
+export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+export ANDROID_SDK=$ANDROID_SDK_ROOT
+export REACT_EDITOR=subl
+
+export GEM_HOME=$HOME/.gem
+export PATH="$PATH:$GEM_HOME/bin"
+
+export YARN_HOME=$HOME/.yarn
+export PATH="$PATH:$YARN_HOME/bin"
