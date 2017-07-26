@@ -44,3 +44,6 @@ source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 bindkey "^U" backward-kill-line
 bindkey "^X^_" redo
 
+function fix_vpn () {
+  sudo route -n delete 185.110.175.225/32 192.168.1.1
+}
