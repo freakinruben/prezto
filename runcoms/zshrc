@@ -26,7 +26,7 @@ bindkey "^I" expand-or-complete-with-dots
 # . $(brew --prefix nvm)/nvm.sh
 
 # color highlighting in man pages
-man() {
+cman() {
   env \
     LESS_TERMCAP_mb=$(printf "\e[1;31m") \
     LESS_TERMCAP_md=$(printf "\e[1;31m") \
@@ -47,3 +47,40 @@ bindkey "^X^_" redo
 function fix_vpn () {
   sudo route -n delete 185.110.175.225/32 192.168.1.1
 }
+export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
+# added by travis gem
+[ -f /Users/ruben/.travis/travis.sh ] && source /Users/ruben/.travis/travis.sh
+
+# copied from https://stackoverflow.com/a/11768843
+function change_commits () {
+  VAR=$1; OLD=$2; NEW=$3; shift 3;
+  git filter-branch \
+    -f \
+    --env-filter \
+    "if [[ \"$`echo $VAR`\" = '$OLD' ]]; then export $VAR='$NEW'; fi" \
+    HEAD;
+}
+
+function change_git_prj_email () {
+  oldEmail="$1"
+  newEmail="$2"
+  git config user.email "$newEmail"
+  change_commits GIT_AUTHOR_EMAIL "$oldEmail" "$newEmail"
+  change_commits GIT_COMMITTER_EMAIL "$oldEmail" "$newEmail"
+}
+
+function set_sense_git_prj () {
+  change_git_prj_email "freakinruben@gmail.com" "ruben@sense-os.nl"
+}
+
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# rbenv
+eval "$(rbenv init -)"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/ruben/.sdkman"
+[[ -s "/Users/ruben/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ruben/.sdkman/bin/sdkman-init.sh"
