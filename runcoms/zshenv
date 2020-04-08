@@ -29,6 +29,6 @@ export PATH="$PATH:$GEM_HOME/bin"
 export YARN_HOME=$HOME/.yarn
 export PATH="$PATH:$YARN_HOME/bin"
 
-export PRIVATE_GITHUB_TOKEN="e6094e4534c4e176eedb08d3b0e82debcd5fc966"
+export PRIVATE_GITHUB_TOKEN="revoked"
 
 export NVM_DIR="$HOME/.nvm"
