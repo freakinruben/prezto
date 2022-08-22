@@ -22,9 +22,6 @@ bindkey "^I" expand-or-complete-with-dots
 
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
-# export NVM_DIR=~/.nvm
-# . $(brew --prefix nvm)/nvm.sh
-
 # color highlighting in man pages
 cman() {
   env \
@@ -38,20 +35,8 @@ cman() {
     man "$@"
 }
 
-# brew: google cloud sdk
-# source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-# source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-# bindkey "^U" backward-kill-line
-# bindkey "^X^_" redo
-
-function fix_vpn () {
-  sudo route -n delete 185.110.175.225/32 192.168.1.1
-}
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-
-# added by travis gem
-[ -f /Users/ruben/.travis/travis.sh ] && source /Users/ruben/.travis/travis.sh
 
 # copied from https://stackoverflow.com/a/11768843
 function change_commits () {
@@ -71,18 +56,14 @@ function change_git_prj_email () {
   change_commits GIT_COMMITTER_EMAIL "$oldEmail" "$newEmail"
 }
 
-function set_sense_git_prj () {
-  change_git_prj_email "freakinruben@gmail.com" "ruben@sense-os.nl"
-}
-
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
+export NVM_DIR=/usr/local/opt/nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/etc/bash_completion.d/nvm" ] && . "$NVM_DIR/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 # rbenv
 eval "$(rbenv init -)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/ruben/.sdkman"
-[[ -s "/Users/ruben/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ruben/.sdkman/bin/sdkman-init.sh"
+# export SDKMAN_DIR="/Users/ruben/.sdkman"
+# [[ -s "/Users/ruben/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ruben/.sdkman/bin/sdkman-init.sh"
 
 alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"

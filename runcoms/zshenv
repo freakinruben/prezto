@@ -10,18 +10,20 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-export SUBLIME=subl
-export EDITOR="$SUBLIME --wait"
+export EDITOR=code
 export VISUAL=$EDITOR
 export LSCOLORS="exfxcxdxbxegedabagacad"
 
+export ANDROID_HOME=$HOME/BuildTools/android/sdk-2022-01-19
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export ANDROID_AVD_HOME=$HOME/.android/avd
 
-#export ANDROID_HOME=~/Library/Android/sdk
-export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
-export ANDROID_SDK=$ANDROID_SDK_ROOT
-#export ANDROID_HOME=/usr/local/opt/android-sdk
-export ANDROID_HOME=$ANDROID_SDK_ROOT
-export REACT_EDITOR=subl
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export REACT_EDITOR=code
 
 export GEM_HOME=$HOME/.gem
 export PATH="$PATH:$GEM_HOME/bin"
@@ -32,3 +34,4 @@ export PATH="$PATH:$YARN_HOME/bin"
 export PRIVATE_GITHUB_TOKEN="revoked"
 
 export NVM_DIR="$HOME/.nvm"
+export GPG_TTY=$(tty)
