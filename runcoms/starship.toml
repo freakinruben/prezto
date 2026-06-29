@@ -1,0 +1,61 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Powerline prompt: user → directory → git. No language/version segments.
+format = """
+[](#9A348E)\
+$os\
+$username\
+[](bg:#DA627D fg:#9A348E)\
+$directory\
+[](fg:#DA627D bg:#FCA17D)\
+$git_branch\
+$git_status\
+$git_state\
+[](fg:#FCA17D)\
+$line_break\
+$character\
+"""
+
+# Clock on the right edge (RPROMPT-style), plain — no powerline block.
+right_format = '$time'
+
+# Foregrounds tuned for contrast: white on the dark magenta, near-black on the lighter pink/peach.
+[username]
+show_always = true
+style_user = "fg:#ffffff bold bg:#9A348E"
+style_root = "fg:#ffffff bold bg:#9A348E"
+format = '[$user ]($style)'
+disabled = false
+
+[os]
+style = "bg:#9A348E"
+disabled = true
+
+[directory]
+style = "fg:#1c1c1c bold bg:#DA627D"
+format = "[  $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+symbol = ""
+style = "fg:#1c1c1c bold bg:#FCA17D"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "fg:#1c1c1c bold bg:#FCA17D"
+format = '[$all_status$ahead_behind ]($style)'
+
+[git_state]
+style = "fg:#1c1c1c bold bg:#FCA17D"
+format = '[ ($state $progress_current/$progress_total) ]($style)'
+
+[time]
+disabled = false
+time_format = "%R"
+style = "dimmed white"
+format = '[$time]($style)'
+
+[character]
+success_symbol = '[❯](bold green)'
+error_symbol = '[❯](bold red)'
