@@ -42,8 +42,8 @@ zstyle ':prezto:load' pmodule \
   'archive' \
   'git' \
   'syntax-highlighting' \
-  'history-substring-search' \
-  'prompt'
+  'history-substring-search'
+  # 'prompt' disabled — starship (in zshrc) provides the prompt now
 
 #
 # Autosuggestions
